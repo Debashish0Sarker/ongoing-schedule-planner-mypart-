@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Notification History</h2>
+  
+  <!-- Notification List -->
+  <div class="list-group">
+    {% for n in notifications %}
+    <div class="list-group-item {% if not n.is_read %}list-group-item-warning{% endif %}">
+      <div class="d-flex justify-content-between">
+        <span>{{ n.message }}</span>
+        <small class="text-muted">
+          {{ n.timestamp.strftime('%d/%m/%Y at %I:%M%p')|lower }}  <!-- 09/05/2025 at 11:24am -->
+        </small>
+      </div>
+      {% if not n.is_read %}
+        <a href="{{ url_for('notifications.mark_read', nid=n.id) }}" 
+           class="badge badge-primary float-right">Mark Read</a>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">No notifications found</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

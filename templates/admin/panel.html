@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Admin Notifications</h2>
+  <a href="{{ url_for('admin.mark_all_read') }}" class="btn btn-sm btn-secondary mb-3">Mark All Read</a>
+  
+  <div class="list-group">
+    {% for n in notifications %}
+    <div class="list-group-item {% if not n.is_read %}list-group-item-warning{% endif %}">
+      <div class="d-flex justify-content-between">
+        <div>
+          {{ n.message }}
+          <small class="text-muted d-block">{{ n.timestamp.strftime('%d/%m/%Y %I:%M%p')|lower }}</small>
+        </div>
+        {% if not n.is_read %}
+        <a href="{{ url_for('admin.mark_read', nid=n.id) }}" class="btn btn-sm btn-success">✓</a>
+        {% endif %}
+      </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">No pending notifications</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

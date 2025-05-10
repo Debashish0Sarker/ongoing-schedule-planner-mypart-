@@ -1,0 +1,56 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="fas fa-bell me-2"></i>Student Notification Settings</h2>
+    
+    <form method="post" class="needs-validation" novalidate>
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="enabled" name="enabled" 
+                           {% if settings.student_enabled %}checked{% endif %}>
+                    <label class="form-check-label h5" for="enabled">Enable Notifications</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-info text-white">Reminder Timing</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="days" class="form-label">Days Before Deadline</label>
+                        <input type="number" class="form-control" id="days" name="days" 
+                               min="0" max="30" value="{{ settings.reminder_days }}"
+                               {% if not settings.student_enabled %}disabled{% endif %}>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="hours" class="form-label">Additional Hours</label>
+                        <input type="number" class="form-control" id="hours" name="hours" 
+                               min="0" max="23" value="{{ settings.reminder_hours }}"
+                               {% if not settings.student_enabled %}disabled{% endif %}>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-4">
+            <i class="fas fa-save me-2"></i>Save Settings
+        </button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('enabled');
+    const daysInput = document.getElementById('days');
+    const hoursInput = document.getElementById('hours');
+    
+    toggle.addEventListener('change', function() {
+        daysInput.disabled = !this.checked;
+        hoursInput.disabled = !this.checked;
+    });
+});
+</script>
+{% endblock %}
