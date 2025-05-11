@@ -1,0 +1,84 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2><i class="fas fa-bell"></i> Notification Settings</h2>
+    
+    <form method="post" class="mt-4">
+        <!-- Global Switch -->
+        <div class="card mb-3">
+            <div class="card-header bg-primary text-white">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="enabled" name="enabled" 
+                           {% if settings.enabled %}checked{% endif %}>
+                    <label class="form-check-label h5" for="enabled">Enable Notifications</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Types -->
+        <div class="card mb-3">
+            <div class="card-header">Notification Types</div>
+            <div class="card-body">
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="admin_notifications" name="admin_notifications"
+                           {% if settings.admin_notifications %}checked{% endif %}>
+                    <label class="form-check-label" for="admin_notifications">
+                        Admin Notifications (new registrations, system alerts)
+                    </label>
+                </div>
+                
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="user_notifications" name="user_notifications"
+                           {% if settings.user_notifications %}checked{% endif %}>
+                    <label class="form-check-label" for="user_notifications">
+                        Personal Notifications (assignment reminders)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deadline Reminders -->
+        <div class="card mb-3">
+            <div class="card-header">Assignment Reminder Timing</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="days_before" class="form-label">Days before deadline:</label>
+                        <input type="number" class="form-control" id="days_before" name="days_before"
+                               min="0" max="30" value="{{ settings.days_before }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="hours_before" class="form-label">Additional hours:</label>
+                        <input type="number" class="form-control" id="hours_before" name="hours_before"
+                               min="0" max="23" value="{{ settings.hours_before }}">
+                    </div>
+                </div>
+                <small class="text-muted">Example: 1 day + 3 hours = reminder at 9PM the day before</small>
+            </div>
+        </div>
+        <!-- Add this to your settings form -->
+        <div class="card mb-3">
+            <div class="card-header">Quiz Reminder Timing</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="quiz_days" class="form-label">Days before quiz:</label>
+                        <input type="number" class="form-control" id="quiz_days" name="quiz_days"
+                            min="0" max="30" value="{{ settings.quiz_reminder_days }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="quiz_hours" class="form-label">Additional hours:</label>
+                        <input type="number" class="form-control" id="quiz_hours" name="quiz_hours"
+                            min="0" max="23" value="{{ settings.quiz_reminder_hours }}">
+                    </div>
+                </div>
+                <small class="text-muted">Default: 1 day before quiz</small>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Save Settings
+        </button>
+    </form>
+</div>
+{% endblock %}

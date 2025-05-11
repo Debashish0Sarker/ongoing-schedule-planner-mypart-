@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2><i class="fas fa-bell"></i> Admin Notification Settings</h2>
+    
+    <form method="post" class="mt-4">
+        <div class="card mb-3">
+            <div class="card-header bg-danger text-white">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="admin_enabled" name="admin_enabled"
+                           {% if settings.admin_enabled %}checked{% endif %}>
+                    <label class="form-check-label h5" for="admin_enabled">Enable Admin Notifications</label>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>Control notifications for:</p>
+                <ul>
+                    <li>New user registrations</li>
+                    <li>System alerts</li>
+                    <li>Admin tasks</li>
+                </ul>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Save Settings
+        </button>
+    </form>
+</div>
+{% endblock %}
