@@ -108,4 +108,8 @@ def test_user_notif():
     )
     db.session.add(notif)
     db.session.commit()
+<<<<<<< HEAD
     return "User test notification created"
+=======
+    return "User test notification created"
+>>>>>>> 9dca34be3757adf19bd5eab9accbbdfd9b5fc196

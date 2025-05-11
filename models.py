@@ -46,17 +46,29 @@ class NotificationSetting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True, nullable=False)
     
+<<<<<<< HEAD
     # Set default values here to avoid NULL values
     student_enabled = db.Column(db.Boolean, default=True)
     reminder_days = db.Column(db.Integer, default=1)  # Default value
     reminder_hours = db.Column(db.Integer, default=0)  # Default value
     quiz_reminder_days = db.Column(db.Integer, default=1, nullable=False)  # Default value
     quiz_reminder_hours = db.Column(db.Integer, default=0, nullable=False)  # Default value
+=======
+    # Student Settings
+    student_enabled = db.Column(db.Boolean, default=True)
+    reminder_days = db.Column(db.Integer, default=1)
+    reminder_hours = db.Column(db.Integer, default=0)
+    quiz_reminder_days = db.Column(db.Integer, default=1, nullable=False)
+    quiz_reminder_hours = db.Column(db.Integer, default=0, nullable=False)
+>>>>>>> 9dca34be3757adf19bd5eab9accbbdfd9b5fc196
     
     # Admin Settings
     admin_enabled = db.Column(db.Boolean, default=True)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9dca34be3757adf19bd5eab9accbbdfd9b5fc196
 class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)

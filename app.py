@@ -11,11 +11,17 @@ from blueprints.admin.views import admin_bp
 from blueprints.student.notifications import student_notif_bp
 from blueprints.admin.notifications import admin_notif_bp
 
+<<<<<<< HEAD
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+=======
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+>>>>>>> 9dca34be3757adf19bd5eab9accbbdfd9b5fc196
     
     # Initialize extensions
     db.init_app(app)
